@@ -1,0 +1,34 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "k360",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-19",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "services": [
+    {
+      // Self-reference used by the caching layer; must match "name" above.
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "k360",
+    },
+  ],
+  "r2_buckets": [
+    {
+      // Page cache. Create once with: npx wrangler r2 bucket create k360-opennext-cache
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "k360-opennext-cache",
+    },
+  ],
+  "observability": {
+    "enabled": true,
+  },
+  "routes": [
+    // Root domain: city list, admin, emergency.
+    { "pattern": "nsbglobal.net", "custom_domain": true },
+    // City subdomains (kochi.nsbglobal.net, ...). Needs a proxied wildcard DNS record.
+    { "pattern": "*.nsbglobal.net/*", "zone_name": "nsbglobal.net" },
+  ],
+}

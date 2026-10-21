@@ -1,0 +1,79 @@
+{
+  "name": "k360",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Community-built guide to every place, shop and service in a city.",
+  "author": "Naseeb Naushad",
+  "license": "AGPL-3.0-only",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "predev": "npm run vendor --silent",
+    "dev": "next dev",
+    "prebuild": "npm run vendor --silent",
+    "build": "next build",
+    "vendor": "node scripts/vendor/index.ts",
+    "start": "next start",
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "security:secrets": "node scripts/security/scan-secrets.ts",
+    "security:audit": "npm audit --omit=dev --audit-level=high",
+    "check": "npm run security:secrets && npm run lint && npm run format:check && npm run typecheck && npm run test && npm run security:audit",
+    "test:security": "vitest run --config vitest.security.config.mts",
+    "verify": "npm run check && npm run test:security",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf:typegen": "wrangler types --env-interface CloudflareEnv",
+    "db:link": "supabase link",
+    "db:push": "supabase db push",
+    "db:new": "supabase migration new",
+    "db:types": "supabase gen types typescript --linked --schema public > src/lib/supabase/database.types.ts",
+    "import:osm": "node --env-file-if-exists=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/osm-import/index.ts",
+    "import:areas": "node --env-file-if-exists=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/area-import/index.ts",
+    "admin:add": "node --env-file-if-exists=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/admin/index.ts",
+    "icons": "node --env-file-if-exists=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/icons/index.ts",
+    "hours:sync": "node --env-file-if-exists=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/hours-sync/index.ts"
+  },
+  "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.13",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "lucide-react": "1.52.0",
+    "maplibre-gl": "^6.15.0",
+    "next": "16.4.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "supabase": "^2.121.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^5.0.5",
+    "wrangler": "^4.151.3"
+  },
+  "allowScripts": {
+    "workerd@1.20261019.1": true,
+    "unrs-resolver@1.12.2": true,
+    "esbuild@0.28.2": true
+  },
+  "overrides": {
+    "@node-minify/core": {
+      "glob": "^10.5.0"
+    }
+  }
+}

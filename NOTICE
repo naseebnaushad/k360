@@ -1,0 +1,30 @@
+K360
+Copyright (C) 2026 Naseeb Naushad
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3 (see LICENSE).
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+ADDITIONAL TERMS (AGPL-3.0 Section 7(b))
+
+As permitted by Section 7(b) of the GNU Affero General Public License, the
+following reasonable author attribution must be preserved:
+
+  Any copy, modified version or derivative work of this program that is
+  conveyed, or made available to users over a network, must display the notice
+  "Originally created by Naseeb Naushad" in a location reasonably visible to
+  users, such as the site footer or an "About" page, and must retain this
+  NOTICE file.
+
+DATA
+
+The database contents (places, reviews, listings and related data) are licensed
+separately under the Open Database License (ODbL) v1.0:
+https://opendatacommons.org/licenses/odbl/1-0/
+
+Portions of the data are derived from OpenStreetMap, (C) OpenStreetMap
+contributors, available under the ODbL.

@@ -1,0 +1,9 @@
+.next/
+.open-next/
+.wrangler/
+coverage/
+node_modules/
+package-lock.json
+supabase/.temp/
+src/lib/supabase/database.types.ts
+public/vendor/
