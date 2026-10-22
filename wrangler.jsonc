@@ -28,7 +28,9 @@
   "routes": [
     // Root domain: city list, admin, emergency.
     { "pattern": "nsbglobal.net", "custom_domain": true },
-    // City subdomains (kochi.nsbglobal.net, ...). Needs a proxied wildcard DNS record.
-    { "pattern": "*.nsbglobal.net/*", "zone_name": "nsbglobal.net" },
+    // One route per live city. Do NOT use a wildcard route here: Worker routes win over
+    // DNS, so "*.nsbglobal.net/*" would hijack every other service on the domain.
+    // Add a line here (and a proxied DNS record) when a city goes live.
+    { "pattern": "kochi.nsbglobal.net/*", "zone_name": "nsbglobal.net" },
   ],
 }
